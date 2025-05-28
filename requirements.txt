@@ -1,0 +1,9 @@
+customtkinter
+python-dotenv
+groq
+httpx
+azure-ai-inference
+requests
+aiohttp
+Flask
+Flask-CORS

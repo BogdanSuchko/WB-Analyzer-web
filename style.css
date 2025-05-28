@@ -1,0 +1,540 @@
+/* Общие стили */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #1c1c1e; /* Темный фон как в приложении */
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Чтобы при коротком контенте не растягивалось на всю высоту */
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto; /* Добавляет прокрутку, если текст не помещается */
+}
+
+.app-container {
+    width: 100%;
+    background-color: transparent; /* Основной фон body */
+    border-radius: 15px;
+    /* border: 2px solid #0a84ff; */ /* Убираем общую рамку */
+    /* padding: 20px; */ /* Убираем общий padding, если он не нужен без рамки */
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
+    margin-top: 0;
+}
+
+.card {
+    background-color: #2c2c2e; /* Цвет карточек как в приложении */
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #3a3a3c;
+}
+
+.app-header h1 {
+    color: #0a84ff; /* Акцентный цвет */
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.app-header p {
+    color: #86868b; /* Вторичный текст */
+    font-size: 14px;
+    margin-top: 0;
+}
+
+/* Стили для элементов ввода */
+.input-section {
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-section label, .product-input-container p {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #f0f0f0;
+}
+
+.input-section input[type="text"] {
+    width: calc(100% - 20px); /* Учитываем padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #39393d;
+    background-color: #39393d; /* Фон поля ввода */
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.input-section input[type="text"]::placeholder {
+    color: #86868b;
+}
+
+.mode-switcher {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.mode-switcher label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #e0e0e0;
+    cursor: pointer;
+}
+.mode-switcher input[type="radio"] {
+    accent-color: #0a84ff;
+}
+
+
+.product-input-container {
+    margin-bottom: 10px;
+}
+.product-entry {
+    margin-bottom: 10px;
+}
+.product-entry label {
+    font-size: 13px;
+    color: #c0c0c0;
+    margin-bottom: 4px;
+}
+
+
+/* Кнопки */
+.analyze-button, .secondary-button, .back-button, .clear-history-button, .history-item-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+}
+
+.analyze-button {
+    background-color: #0a84ff; /* Акцентный цвет */
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.analyze-button:hover {
+    background-color: #0069d9;
+}
+
+.secondary-button {
+    background-color: #4a4a4c;
+    color: white;
+    margin-bottom: 10px;
+}
+.secondary-button:hover {
+    background-color: #5a5a5c;
+}
+
+.analysis-time-note {
+    font-size: 12px;
+    color: #86868b;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Оверлей загрузки */
+.loading-overlay {
+    position: fixed; /* Или absolute, если родитель имеет position: relative */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 44, 46, 0.85); /* Полупрозрачный фон карточки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column; /* Для центрирования контента */
+}
+
+.loading-content {
+    background-color: #2c2c2e; /* Цвет карточки */
+    padding: 30px 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f330; /* Light grey */
+    border-top: 4px solid #0a84ff; /* Accent color */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loadingMessage {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.progress-bar-container {
+    width: 80%;
+    max-width: 250px;
+    background-color: #39393d;
+    border-radius: 5px;
+    margin: 10px auto 0 auto;
+    height: 10px;
+    overflow: hidden; /* Скрываем выходящую часть прогресс-бара */
+}
+
+.progress-bar {
+    width: 0%; /* Начальная ширина */
+    height: 100%;
+    background-color: #0a84ff; /* Акцентный цвет */
+    border-radius: 5px;
+    transition: width 0.2s ease-out;
+}
+
+
+/* Секция результатов */
+.results-section {
+    padding-top: 15px;
+    position: relative; /* Для корректного позиционирования кнопки назад */
+}
+
+.results-section h2 {
+    color: #f0f0f0;
+    font-size: 20px;
+    margin-top: 0;
+    /* margin-bottom: 15px; Заголовок продукта будет управлять отступом */
+    /* border-bottom: 1px solid #3a3a3c; Убираем, чтобы заголовок товара был чище*/
+    /* padding-bottom: 10px; */
+}
+
+#singleResultContainer h2 { /* Заголовок для одиночного товара */
+    margin-left: 100px; /* Оставляем место для кнопки Назад */
+    margin-right: 15px; /* Отступ справа */
+    margin-bottom: 15px; /* Отступ снизу до текста анализа */
+    padding-top: 5px; /* Небольшой отступ сверху, чтобы кнопка Назад не прилипала */
+    line-height: 1.3;
+}
+
+
+.analysis-text {
+    background-color: #1c1c1e; /* Чуть темнее карточки для контраста */
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    white-space: pre-wrap; /* Сохраняет переносы строк и пробелы */
+    min-height: 200px; /* Минимальная высота, чтобы было куда смотреть */
+    max-height: 70vh;  /* Максимум 70% высоты видимой области окна */
+    overflow-y: auto; /* Добавляет прокрутку, если текст не помещается */
+    /* border: 2px solid #0a84ff; */ /* Синяя рамка для блока с текстом анализа УБРАНА */
+    margin-top: 10px; /* Добавил отступ сверху, если перед ним заголовок */
+}
+
+#singleResultContainer .analysis-text {
+    margin-top: 0; /* Для одиночного товара отступ сверху не нужен, т.к. он после заголовка */
+    background-color: #2c2c2e; /* Возвращаем фон как у карточки для одиночного результата */
+    border: 2px solid #0a84ff; /* ВОЗВРАЩАЕМ СИНЮЮ РАМКУ */
+}
+
+.back-button {
+    position: absolute; /* Абсолютное позиционирование относительно .results-section */
+    top: 20px; /* Отступ сверху в .results-section */
+    left: 20px; /* Отступ слева в .results-section */
+    width: auto; /* Не на всю ширину */
+    padding: 8px 18px;
+    font-size: 13px;
+    background-color: #3a3a3c;
+    color: white;
+    /* float: left; Убираем float */
+    /* margin-bottom: 10px; Управляется через отступ заголовка и контейнера */
+}
+.back-button:hover {
+    background-color: #4a4a4c;
+}
+
+/* Стили для сравнения товаров */
+#comparisonResultContainer {
+    /* Стили, если нужны специфичные для контейнера сравнения */
+}
+#comparisonOverallTitle {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 5px; /* Отступ сверху для кнопки Назад, если она активна на этом экране */
+    margin-left: 100px; /* Место для кнопки Назад */
+    margin-right: 15px;
+}
+
+.comparison-columns {
+    display: flex;
+    gap: 15px; /* Пространство между колонками */
+    margin-bottom: 20px;
+}
+
+.comparison-column {
+    flex: 1; /* Равномерное распределение пространства */
+    background-color: #39393d; /* Цвет фона колонки */
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #0a84ff; /* ВОЗВРАЩАЕМ СИНЮЮ РАМКУ */
+    display: flex; /* Для управления высотой текстового блока */
+    flex-direction: column; /* Чтобы элементы шли друг под другом */
+}
+
+.comparison-column h4 {
+    color: #0a84ff; /* Акцентный цвет для заголовка товара в колонке */
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #4a4a4c;
+    padding-bottom: 8px;
+}
+.review-count-comparison {
+    font-size: 11px;
+    color: #86868b;
+    margin-bottom: 10px;
+}
+
+.comparison-column .analysis-text { /* Переопределяем для колонок, если нужно */
+    background-color: #39393d; /* Фон текста анализа в колонке такой же как у колонки */
+    /* max-height: 300px; Убрали, будет управляться flex-grow */
+    flex-grow: 1; /* Позволяет текстовому блоку занимать доступное пространство */
+    min-height: 150px; /* Минимальная высота, чтобы колонка не схлопывалась */
+    border: none; /* Убираем индивидуальную рамку у текста, если она была */
+}
+
+.recommendation-card {
+    background-color: #39393d;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 2px solid #0a84ff; /* ВОЗВРАЩАЕМ СИНЮЮ РАМКУ */
+}
+.recommendation-card h3 {
+    font-size: 18px;
+    color: #0a84ff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.recommendation-card .analysis-text { /* Стили для текста в карточке рекомендаций */
+    background-color: #39393d; /* Фон такой же как у карточки */
+    border: none; /* Убираем индивидуальную рамку у текста */
+}
+.emoji-title {
+    margin-right: 5px;
+}
+
+/* Секция истории */
+.history-section {
+    position: relative; /* Для кнопки назад и clear */
+}
+.history-section h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Отступ под заголовком */
+    margin-top: 50px; /* Отступ над заголовком, чтобы вместить кнопки */
+}
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.history-item {
+    background-color: #39393d;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.history-item:hover {
+    background-color: #4a4a4c;
+}
+.history-item-info {
+    flex-grow: 1;
+}
+.history-item-title {
+    font-size: 15px;
+    color: #e0e0e0;
+    margin-bottom: 3px;
+}
+.history-item-type {
+    font-size: 12px;
+    color: #0a84ff; /* Акцентный синий цвет для типа анализа в истории */
+    font-weight: bold; /* Выделение типа анализа жирным шрифтом */
+}
+.history-item-timestamp {
+    font-size: 12px;
+    color: #86868b;
+}
+.history-item-actions button {
+    margin-left: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.history-item-actions {
+    display: flex;
+    flex-direction: column; /* Располагаем кнопки вертикально */
+    gap: 8px; /* Добавляем отступ между кнопками */
+    margin-left: 10px; /* Небольшой отступ слева от блока с информацией */
+}
+
+.history-item-button {
+    width: auto;
+    font-weight: normal;
+}
+.view-history-btn {
+    background-color: #0a84ff;
+    color: white;
+}
+.view-history-btn:hover {
+    background-color: #0069d9;
+}
+.delete-history-btn {
+    background-color: #e74c3c; /* Красный для опасных действий */
+    color: white;
+}
+.delete-history-btn:hover {
+    background-color: #c0392b;
+}
+
+
+.clear-history-button {
+    background-color: #e74c3c; /* Красный для опасных действий */
+    color: white;
+    position: absolute; /* Позиционирование относительно .history-section */
+    top: 20px;
+    right: 20px;
+    width: auto;
+    padding: 8px 18px;
+    font-size: 13px;
+    /* margin-bottom: 15px; */ /* Убрано, т.к. абсолютное позиционирование */
+}
+.clear-history-button:hover {
+    background-color: #c0392b;
+}
+.clear-history-button:disabled {
+    background-color: #808080;
+    cursor: not-allowed;
+}
+
+#noHistoryMessage {
+    text-align: center;
+    color: #86868b;
+    padding: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .comparison-columns {
+        flex-direction: column; /* Колонки друг под другом на малых экранах */
+    }
+    .app-header h1 {
+        font-size: 24px;
+    }
+    .analyze-button, .secondary-button {
+        font-size: 14px;
+    }
+    body {
+        padding: 10px;
+    }
+    .card {
+        padding: 15px;
+    }
+    #singleResultContainer h2, #comparisonOverallTitle {
+        margin-left: 80px; /* Меньше места для кнопки назад на мобильных */
+        font-size: 18px;
+    }
+    .back-button {
+        top: 15px;
+        left: 15px;
+    }
+    .clear-history-button {
+        top: 15px;
+        right: 15px;
+    }
+    .history-section h2 {
+        margin-top: 60px; /* Увеличиваем, чтобы кнопки точно влезли */
+    }
+}
+
+@media (max-width: 480px) {
+    .mode-switcher {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    .back-button, .clear-history-button {
+        width: calc(100% - 30px); /* Чтобы вписывались в padding карточки */
+        position: static; /* Возвращаем в поток для мобильных */
+        float: none;
+        margin-bottom: 10px;
+    }
+    .history-section .back-button { /* Кнопка Назад в истории */
+         margin-top: 0; /* Убираем лишний отступ сверху на мобильных */
+    }
+     .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .history-item-actions {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: row; /* На маленьких экранах возвращаем в ряд */
+        gap: 10px;
+    }
+    .history-item-actions button {
+        flex-grow: 1;
+        margin-left: 0;
+    }
+    #singleResultContainer h2, #comparisonOverallTitle {
+        margin-left: 0; /* На маленьких экранах заголовок занимает всю ширину */
+        text-align: center; /* Центрируем заголовок */
+        margin-top: 45px; /* Добавляем отступ сверху из-за кнопки Назад в потоке */
+    }
+    #comparisonOverallTitle {
+         margin-top: 45px; /* И для заголовка сравнения тоже */
+    }
+    .history-section h2 {
+        margin-top: 15px; /* Уменьшаем отступ, кнопки теперь в потоке */
+        font-size: 20px;
+    }
+}
+
+/* Для корректной работы back кнопки с clear-history */
+/* Убрал, т.к. кнопки теперь позиционируются абсолютно или статично в зависимости от размера экрана */
+/* .history-section::after {
+    content: "";
+    display: table;
+    clear: both;
+} */ 

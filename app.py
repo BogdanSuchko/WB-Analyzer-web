@@ -159,7 +159,7 @@ def serve_index():
 
 if __name__ == '__main__':
     # Запуск на порту 5001 для избежания конфликтов
-    app.run(debug=True, port=5001)
+    app.run(host='0.0.0.0', debug=True, port=5001)
 
     # Автоматическое открытие браузера
     def open_browser():

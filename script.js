@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     let analysisHistory = []; // Массив для хранения истории
-    const API_BASE_URL = "http://127.0.0.1:5001"; // Адрес нашего Flask-сервера
+    const API_BASE_URL = ""; // Адрес нашего Flask-сервера теперь относительный
 
     // --- Инициализация --- 
     loadHistory();

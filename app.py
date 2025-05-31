@@ -1,9 +1,11 @@
 import sys
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import time
 import traceback
+import webbrowser
+import threading
 
 try:
     from ai import ReviewAnalyzer
@@ -14,7 +16,7 @@ except ImportError as e:
     ReviewAnalyzer = None
     WbReview = None
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
 # Функция для извлечения ID товара из URL или прямого ввода
@@ -150,6 +152,18 @@ def analyze_reviews_api():
         print(f"Ошибка в /api/analyze: {traceback.format_exc()}")
         return jsonify({"error": f"Внутренняя ошибка сервера: {str(e)}"}), 500
 
+# Роут для главной страницы
+@app.route('/')
+def serve_index():
+    return send_from_directory(os.getcwd(), 'index.html')
+
 if __name__ == '__main__':
     # Запуск на порту 5001 для избежания конфликтов
     app.run(debug=True, port=5001)
+
+    # Автоматическое открытие браузера
+    def open_browser():
+        time.sleep(1.5)  # Даем серверу время запуститься
+        webbrowser.open('http://localhost:5001')
+    
+    threading.Thread(target=open_browser).start()
